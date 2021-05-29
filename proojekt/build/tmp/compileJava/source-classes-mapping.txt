@@ -1,12 +1,14 @@
 LosoweLiczby.java
  LosoweLiczby
-RozkladMiasta.java
- RozkladMiasta
-Main.java
- Main
-Tramwaj.java
- Tramwaj
-Linia.java
- Linia
 Przystanek.java
  Przystanek
+Linia.java
+ Linia
+Tramwaj.java
+ Tramwaj
+RozkladMiasta.java
+ RozkladMiasta
+Pasazer.java
+ Pasazer
+Main.java
+ Main
