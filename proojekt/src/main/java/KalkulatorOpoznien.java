@@ -4,7 +4,7 @@ public class KalkulatorOpoznien {
     //Co ma wpływ na opóźnienia: pogoda (int ryzyko), doswiadczenie i wiek motorniczego(int doswiadczenie, int wiek)
     //Zmienna szanszaOpoznienia przyjmuje wartosci od 0 do 100
 
-    void obliczSzanseOpoznienia(Motorniczy motorniczy, Pogoda pogoda){
+    public void obliczSzanseOpoznienia(Motorniczy motorniczy, Pogoda pogoda){
 
         //Przeliczanie szansy na wykolejenie ze względu na pogodę
         int szansaOpoznienia=0;
@@ -30,26 +30,25 @@ public class KalkulatorOpoznien {
         else if(motorniczy.doswiadczenie>=19){szansaOpoznienia+=0;}
 
         this.szansaOpoznienia=szansaOpoznienia;
-
     }
 
     public int czyJestOpoznienie(){
         int randoom = (int) (Math.random() * 100);
+        int opoznienie=3;
         if(randoom <= szansaOpoznienia){
-            int opoznienie=3;
             for(int i=0; i<=90; i+=10){
-                if(szansaOpoznienia>=i && szansaOpoznienia<i+10)
-                    return ++opoznienie;
-                opoznienie+=3;
+                if(szansaOpoznienia>=i && szansaOpoznienia<i+10)  break;
+                opoznienie+=(Math.random() * 3);
             }
             System.out.println("Pojawilo sie opoznienie, wynosi: " + opoznienie + "minut!");
+            return opoznienie;
         }
         else if(randoom > szansaOpoznienia){
             System.out.println("Brak opoznienia");
             return 0;
         }
 
-        return 0;
+        return opoznienie;
     }
 
 

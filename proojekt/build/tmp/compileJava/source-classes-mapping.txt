@@ -6,10 +6,8 @@ KalkulatorWykolejen.java
  KalkulatorWykolejen
 Pogoda.java
  Pogoda
-Autobus.java
- Autobus
-Linia.java
- Linia
+Czas.java
+ Czas
 Trasa.java
  Trasa
 Przystanek.java

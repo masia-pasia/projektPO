@@ -43,6 +43,9 @@ public class RozkladMiasta {
             }
         }
 
+        plansza[1][1]="MPK";
+        plansza[7][5]="AUT";
+
 
         System.out.println("Mapa miasta");
         for (int i = 0; i < 9; i++) {

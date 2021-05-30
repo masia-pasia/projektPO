@@ -40,6 +40,10 @@ public class Pasazer {
 //        System.out.println(poczatkowy + " " + koncowy + " " + godzina);
     }
 
+    public void KomunikacjaPoPrzesiadce(){
+
+    }
+
     public int CzyJestTakiPrzystanek(String przystanek) {
         int a = 0;
         try {

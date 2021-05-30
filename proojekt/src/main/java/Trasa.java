@@ -1,15 +1,16 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Scanner;
+import java.util.ArrayList;
 
-public class Trasa  {
+public class Trasa implements LosoweLiczby {
     public int px;
     public int kx;
     public int py;
     public int ky;
     public String[][] mapa;
     public String[] droga;
-
+    ArrayList<Przystanek> Przystanki = new ArrayList<>();
 
     public Trasa(String[][] mapa, int px, int kx, int py, int ky){
         this.px = px;
@@ -18,6 +19,8 @@ public class Trasa  {
         this.ky = ky;
         this.mapa = mapa;
     }
+
+
 
     public void BudowanieMapy() {
         try {
@@ -95,6 +98,8 @@ public class Trasa  {
                         poz++;
                     }
                 }
+                System.out.println("\nTrasa 1: ");
+
                 for (int i = 0; i < droga1.length - 1; i++) { //wypisanie tras
                     System.out.print(droga1[i] + " --> ");
                 }
@@ -124,23 +129,69 @@ public class Trasa  {
                         poz++;
                     }
                 }
+
                 System.out.println(droga1[droga1.length - 1]);
+                System.out.println("\nTrasa 2: ");
                 for (int i = 0; i < droga2.length - 1; i++) {
                     System.out.print(droga2[i] + " --> ");
                 }
+
                 System.out.println(droga2[droga2.length - 1]);
             }
 
 
             if(ilex!=0&&iley!=0){
-                System.out.println("Chcesz jechać trasą 1 czy 2"); //wybor trasy
-                Scanner scan = new Scanner(System.in);
-                int wybor = scan.nextInt();
+                int wybor=0;
+                do{
+                System.out.println("\nChcesz jechać trasą 1 czy 2?"); //wybor trasy
+                    Scanner scan = new Scanner(System.in);
+                    wybor = scan.nextInt();
                 if (wybor == 1) return droga1;
-                else return droga2;
+                else if(wybor == 2) return droga2;
+                else //{String[] droga3 = {"Byq pisac nie umiesz? Wybierz 1 lub 2"};
+                //return droga3;}
+                    System.out.println("Co Ty robisz byq? 1 albo 2");
+                }while(wybor!=1&&wybor!=2);
             }
             else if(iley==0) return droga1;
             else return droga2;
         }
+        String[] pajac = new String[1];
+        pajac[0]="Pajac";
+        return pajac;
     }
+
+    @Override
+    public int random(){
+        int randoom = (int) (Math.random() * 26);
+        int StanTech = randoom;
+//        System.out.println("Numer: " + numer);
+        return StanTech;
+    }
+
+    public void ZbudujPrzystanki(String[] droga){
+        int a=0;
+        int pozx, pozy;
+        int StanTech = random();
+        int dlugosc=droga.length;
+        while(dlugosc!=0){
+            for(int i=0; i<5; i++){
+                for(int j=0; j<5; j++){
+                    if(droga[a]==mapa[i][j]){
+                        pozx=i;
+                        pozy=j;
+                        Przystanki.add(new Przystanek(droga[a], pozx, pozy, StanTech));
+                    }
+                }
+            }
+            a++;
+            dlugosc--;
+
+        }
+    }
+
+    public ArrayList<Przystanek> getPrzystanki() {
+        return Przystanki;
+    }
+
 }
