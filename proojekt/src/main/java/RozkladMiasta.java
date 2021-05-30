@@ -4,8 +4,8 @@ import java.io.FileReader;
 public class RozkladMiasta {
     public String[][] plansza;
 
-    public RozkladMiasta(String[][] plansza){
-        this.plansza=plansza;
+    public RozkladMiasta(String[][] plansza) {
+        this.plansza = plansza;
     }
 
     /*String[][] mapa = new String[9][9];
@@ -51,4 +51,5 @@ public class RozkladMiasta {
             }
             System.out.print("\n");
         }
-    }}
+    }
+}

@@ -1,8 +1,8 @@
 public class Przystanek {
-    private String name;
-    private int pozx;
-    private int pozy;
-    private int stanTech;
+    public String name;
+    public int pozx;
+    public int pozy;
+    public int stanTech;
 
     public Przystanek(String name, int pozx, int pozy, int stanTech){
         this.name=name;
@@ -11,5 +11,4 @@ public class Przystanek {
         this.stanTech=stanTech;
 
     }
-
 }
