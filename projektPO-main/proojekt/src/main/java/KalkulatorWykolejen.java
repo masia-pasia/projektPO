@@ -6,6 +6,7 @@ public class KalkulatorWykolejen {
     //                            stan techniczny tramwaju (stanTechTram), stan techniczny torow (stanTech)
     //zmienna szansaWykolejenia przyjumje wartosci od 0 do 100
 
+    //Metoda obliczajaca prawdopodobienstwo wystapienia wykolejenia na podstawie warunkow pogodowych, doswiadczeia, wiku motorniczego, stanu technicznego tramwaju oraz torow przy przysyanku
     public void obliczSzanseWykolejenia(Tramwaj tramwaj, Pogoda pogoda, Motorniczy motorniczy, Przystanek przystanek){
 
         //kazdy z parametrów: ryzyko, stanTech i stanTechTram skaluje się do maks. 25pkt
@@ -31,9 +32,9 @@ public class KalkulatorWykolejen {
         this.szansaWykolejenia=szansaWykolejenia;
     }
 
-
+    //Metoda stwierdzajaca czy faktycznie wystapilo wykolejenie
     public boolean czyJestWykolejenie(){
-        int randoom = (int) (Math.random() * 100);
+        int randoom = (int) (Math.random() * 100)+20;
         if(randoom <= szansaWykolejenia){
                 System.out.println("Nastapilo wykolejenie tramwaju!");
                 return true;

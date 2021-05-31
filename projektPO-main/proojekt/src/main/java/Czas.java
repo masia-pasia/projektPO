@@ -3,12 +3,13 @@ public class Czas {
     int minuta;
     int godzina;
 
+    //Konstruktor formatu godzinowego
     Czas(int minuta,int godzina){
         this.minuta=minuta;
         this.godzina=godzina;
     }
 
-    //Funkcja dodaje zadaną liczbę minut i godzin a następnie przelicza czas aby wyświetlał się w odpowiednim formacie
+    //Metoda dodaje zadaną liczbę minut i godzin a następnie przelicza czas aby wyświetlał się w odpowiednim formacie
     public void przeliczCzas(int minute, int hour){
         godzina+=hour;
         minuta+=minute;
@@ -21,6 +22,7 @@ public class Czas {
         }
     }
 
+    //Metoda wypisująca czas w postaci zegara
     public void wypiszCzas(){
         if(godzina>9 && minuta>9) { System.out.println("[" + godzina + ":" + minuta + "]"); }
         else if(godzina>9 && minuta<=9) { System.out.println("[" + godzina + ":0" + minuta + "]"); }
@@ -28,6 +30,7 @@ public class Czas {
         else if(godzina<=9 && minuta<=9) { System.out.println("[0" + godzina + ":0" + minuta + "]"); }
     }
 
+    //Metoda powodująca opoźnienie wyświetlania kolejnych akcji w terminalu
     static void stoper(int ileMiliSekund){
         try {
             Thread.sleep(ileMiliSekund);

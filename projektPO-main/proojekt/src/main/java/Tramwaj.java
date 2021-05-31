@@ -10,12 +10,14 @@ public class Tramwaj implements LosoweLiczby, Pozycja {
     public String poczatkowy;
     public String koncowy;
 
+    //Konstruktor obiektu tramwaj
     public Tramwaj(String poczatkowy, String koncowy){
         random();
         this.poczatkowy=poczatkowy;
         this.koncowy=koncowy;
     }
 
+    //Metoda implementujaca interfejs losowe liczby
     @Override
     public int random(){
         int randoom = (int) (Math.random() * 26);
@@ -23,20 +25,19 @@ public class Tramwaj implements LosoweLiczby, Pozycja {
         return randoom;
     };
 
-
+    //Metoda wyznaczajaca pozycje poczatkowa
     @Override
     public void PoczatkowaPozycja(){
         int a=0;
         try {
             BufferedReader brr = new BufferedReader(
-                    new FileReader("C:\\Users\\Dawid\\Desktop\\projektPO-main\\proojekt\\nowy.txt"));
+                    new FileReader("C:\\Users\\Dawid\\Desktop\\projektPO-main\\proojekt\\bazaprzystankow.txt"));
 
             String odczyt;
 
             while((odczyt=brr.readLine())!=null){
 
                 if(odczyt.equals(poczatkowy)){
-                    //System.out.println("Dobrze byq " + a);
                     break;
                 }
                 else {
@@ -53,15 +54,15 @@ public class Tramwaj implements LosoweLiczby, Pozycja {
             pozx=a;
         }
         if(a<=4){pozx=a;};
-//        System.out.println("Pozycja x: " + pozx + "\nPozycja y: " + pozy);
     }
 
+    //Metoda wyznaczajaca pozycje koncowa
     @Override
     public void KoncowaPozycja(){
         int a=0;
         try {
             BufferedReader brr = new BufferedReader(
-                    new FileReader("C:\\Users\\Dawid\\Desktop\\projektPO-main\\proojekt\\nowy.txt"));
+                    new FileReader("C:\\Users\\Dawid\\Desktop\\projektPO-main\\proojekt\\bazaprzystankow.txt"));
 
             String odczyt;
 
@@ -85,7 +86,6 @@ public class Tramwaj implements LosoweLiczby, Pozycja {
             pozxk=a;
         }
         if(a<=4){pozxk=a;};
-//        System.out.println("Pozycja xk: " + pozxk + "\nPozycja yk: " + pozyk);
     }
 
    //gettery

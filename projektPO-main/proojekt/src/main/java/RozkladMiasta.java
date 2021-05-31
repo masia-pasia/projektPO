@@ -4,17 +4,11 @@ import java.io.FileReader;
 public class RozkladMiasta {
     public String[][] plansza;
 
-    public RozkladMiasta(String[][] plansza) {
-        this.plansza = plansza;
-    }
-
-    /*String[][] mapa = new String[9][9];
-    RozkladMiasta wroclaw = new RozkladMiasta(mapa);*/
-
+    //Metoda budujaca obraz mapy miasta na podstawie przystankow z pliku bazaprzystankow.txt
     public void BudowanieMapy() {
         try {
             BufferedReader br = new BufferedReader(
-                    new FileReader("C:\\Users\\Dawid\\Desktop\\projektPO-main\\proojekt\\nowy.txt"));
+                    new FileReader("C:\\Users\\Dawid\\Desktop\\projektPO-main\\proojekt\\bazaprzystankow.txt"));
 
             for (int i = 0; i < 9; i += 2) {
                 for (int j = 0; j < 9; j += 2) {
@@ -46,7 +40,6 @@ public class RozkladMiasta {
         plansza[1][1]="MPK";
         plansza[7][5]="AUT";
 
-
         System.out.println("Mapa miasta");
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
@@ -54,5 +47,10 @@ public class RozkladMiasta {
             }
             System.out.print("\n");
         }
+    }
+
+    //getter
+    public RozkladMiasta(String[][] plansza) {
+        this.plansza = plansza;
     }
 }

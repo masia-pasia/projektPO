@@ -6,19 +6,21 @@ public class Pogoda implements LosoweLiczby {
     int ryzyko;
     String nazwa;
 
+    //Konstruktor obiektu pogoda
     Pogoda(){
         random();
         CzytanieZPliku();
     }
 
-
+    //Metoda implementujaca interfejs losowe liczby
     @Override
     public int random(){
         int randoom = (int) (Math.random() * 4);
         numer = randoom;
-//        System.out.println("Numer: " + numer);
         return numer;
     }
+
+    //Metoda odczytujaca dane z pliku bazapogod.txt
     public void CzytanieZPliku(){
         try {
             BufferedReader brr = new BufferedReader(
@@ -32,7 +34,7 @@ public class Pogoda implements LosoweLiczby {
                 if(odczyt.equals(numerWStringu)){
                     ryzyko = Integer.parseInt(brr.readLine());
                     nazwa = brr.readLine();
-//                    System.out.println("Numer: " + numer + "\nRyzyko: " + ryzyko + "\nPogoda dzis: " + nazwa);
+                    System.out.println("Pogoda na dzis: " + nazwa);
                     break;
                 }
             }

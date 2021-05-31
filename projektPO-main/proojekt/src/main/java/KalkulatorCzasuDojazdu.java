@@ -1,6 +1,8 @@
 import java.util.concurrent.ThreadLocalRandom;
 
 public class KalkulatorCzasuDojazdu {
+
+    //Metoda obliczająca czas jaki zajmie naprawa tramwaju
     public static Czas czasDojazduMPK(int pozx, int pozy){
         int pozxMPK = 1;
         int pozyMPK = 1;
@@ -11,6 +13,7 @@ public class KalkulatorCzasuDojazdu {
         return czas;
     }
 
+    //Metoda obliczająca czas po jakim autobus dowiezie pasażera do przystanku docelowego
     public static Czas czasDojazduAutobusu(int pozx, int pozy){
         int pozxAu = 7;
         int pozyAu = 5;

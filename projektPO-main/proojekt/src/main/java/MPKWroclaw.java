@@ -1,5 +1,6 @@
 public class MPKWroclaw {
 
+    //Metoda wywolywana po wezwaniu pomocy MPK
     public static Czas wezwijMPK(int pozx, int pozy){
         Czas czas;
         czas = KalkulatorCzasuDojazdu.czasDojazduMPK(pozx,pozy);
@@ -7,6 +8,7 @@ public class MPKWroclaw {
         return czas;
     }
 
+    //Metoda wywolywana po wybraniu opcji dojazdu autobusem
     public static Czas wezwijAutobus(int pozx, int pozy){
         Czas czas;
         czas = KalkulatorCzasuDojazdu.czasDojazduAutobusu(pozx,pozy);
