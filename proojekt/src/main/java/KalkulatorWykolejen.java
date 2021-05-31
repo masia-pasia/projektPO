@@ -33,7 +33,7 @@ public class KalkulatorWykolejen {
 
 
     public boolean czyJestWykolejenie(){
-        int randoom = (int) (Math.random() * 150);
+        int randoom = (int) (Math.random() * 100);
         if(randoom <= szansaWykolejenia){
                 System.out.println("Nastapilo wykolejenie tramwaju!");
                 return true;

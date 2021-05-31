@@ -2,27 +2,29 @@ KalkulatorOpoznien.java
  KalkulatorOpoznien
 Tramwaj.java
  Tramwaj
-KalkulatorWykolejen.java
- KalkulatorWykolejen
+Motorniczy.java
+ Motorniczy
 Pogoda.java
  Pogoda
 Czas.java
  Czas
-Trasa.java
- Trasa
-Przystanek.java
- Przystanek
+MPKWroclaw.java
+ MPKWroclaw
+KalkulatorCzasuDojazdu.java
+ KalkulatorCzasuDojazdu
 LosoweLiczby.java
  LosoweLiczby
 RozkladMiasta.java
  RozkladMiasta
-Main.java
- Main
-Pasazer.java
- Pasazer
-MPKWroclaw.java
- MPKWroclaw
-Motorniczy.java
- Motorniczy
 Pozycja.java
  Pozycja
+Pasazer.java
+ Pasazer
+Main.java
+ Main
+KalkulatorWykolejen.java
+ KalkulatorWykolejen
+Trasa.java
+ Trasa
+Przystanek.java
+ Przystanek

@@ -194,4 +194,5 @@ public class Trasa implements LosoweLiczby {
         return Przystanki;
     }
 
+
 }

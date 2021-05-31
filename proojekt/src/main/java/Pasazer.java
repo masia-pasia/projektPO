@@ -1,12 +1,13 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Scanner;
+
 import java.lang.Object;
 
 public class Pasazer {
     public String poczatkowy;
     public String koncowy;
-    public double godzina;
+    public Czas godzina;
 
     public Pasazer() {
         Komunikacja();
@@ -27,13 +28,19 @@ public class Pasazer {
             System.out.println("\nZ ktorego przystanku odjezdzasz?");
             koniec = scan.nextLine();
         }
-        ;
-        System.out.println("O jakiej godzinie chcesz odjechac?");
-        double godzinka = scan.nextDouble();
-
+        int godzinka=0;
+        int minutka=0;
+        do {
+            System.out.println("Podaj godzine odjazdu: ");
+            godzinka = scan.nextInt();
+            System.out.println("Podaj minute odjazdu: ");
+            minutka = scan.nextInt();
+            if(godzinka>23||minutka>59) System.out.println("Ty sie w caban jebnij pajacu. Naucz sie pisac godziny elo czesc.");
+        }while(godzinka>23||minutka>59);
+        Czas odjazd = new Czas(godzinka, minutka);
         poczatkowy = poczatek;
         koncowy = koniec;
-        godzina = godzinka;
+        godzina = odjazd;
 //        System.out.println("Wszystko git byq");
 //
 //

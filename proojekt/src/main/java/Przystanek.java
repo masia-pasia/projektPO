@@ -1,3 +1,5 @@
+import java.util.concurrent.ThreadLocalRandom;
+
 public class Przystanek{
     public String name;
     public int pozx;
@@ -13,7 +15,22 @@ public class Przystanek{
         this.stanTech = stanTech;
     }
 
-    public void PoinformujOPrzystanku(){
+    public int PoinformujOPrzystanku(int przejazd){
         System.out.println("Dojechales/as do przystanku " + name + "!" );
+        przejazd = ThreadLocalRandom.current().nextInt(1,20);
+        System.out.println("Przejazd zajal: " + przejazd + " minut");
+        return przejazd;
+    }
+
+    public int getPozx() {
+        return pozx;
+    }
+
+    public int getPozy() {
+        return pozy;
+    }
+
+    public String getName() {
+        return name;
     }
 }
