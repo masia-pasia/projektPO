@@ -103,6 +103,7 @@ public class Trasa implements LosoweLiczby {
                 for (int i = 0; i < droga1.length - 1; i++) { //wypisanie tras
                     System.out.print(droga1[i] + " --> ");
                 }
+                System.out.println(droga1[droga1.length - 1]);
             }
 
             if(iley!=0) {//druga trasa
@@ -129,13 +130,11 @@ public class Trasa implements LosoweLiczby {
                         poz++;
                     }
                 }
-
                 System.out.println(droga1[droga1.length - 1]);
                 System.out.println("\nTrasa 2: ");
                 for (int i = 0; i < droga2.length - 1; i++) {
                     System.out.print(droga2[i] + " --> ");
                 }
-
                 System.out.println(droga2[droga2.length - 1]);
             }
 

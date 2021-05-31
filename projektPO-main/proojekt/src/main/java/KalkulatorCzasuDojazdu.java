@@ -14,7 +14,7 @@ public class KalkulatorCzasuDojazdu {
     public static Czas czasDojazduAutobusu(int pozx, int pozy){
         int pozxAu = 7;
         int pozyAu = 5;
-        int ile = Math.abs((pozxAu-pozx + pozyAu-pozy + ThreadLocalRandom.current().nextInt(1,50))*10);
+        int ile = Math.abs((pozxAu-pozx + pozyAu-pozy + ThreadLocalRandom.current().nextInt(1,30)));
         Czas czas = new Czas(ile,0);
         czas.przeliczCzas(czas.minuta,czas.godzina);
         if(czas.godzina>2) czas.godzina = 2;
