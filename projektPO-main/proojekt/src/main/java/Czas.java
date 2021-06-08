@@ -1,33 +1,33 @@
 public class Czas {
 
-    int minuta;
-    int godzina;
+    private int minuta;
+    private int godzina;
 
     //Konstruktor formatu godzinowego
     Czas(int minuta,int godzina){
         this.minuta=minuta;
-        this.godzina=godzina;
+        this.setGodzina(godzina);
     }
 
     //Metoda dodaje zadaną liczbę minut i godzin a następnie przelicza czas aby wyświetlał się w odpowiednim formacie
     public void przeliczCzas(int minute, int hour){
-        godzina+=hour;
-        minuta+=minute;
-        while(minuta>=60 || godzina>=24){
-            if(minuta>=60) {
-                minuta-=60;
-                godzina++;
+        setGodzina(getGodzina() + hour);
+        minuta = getMinuta() + minute;
+        while(getMinuta() >=60 || getGodzina() >=24){
+            if(getMinuta() >=60) {
+                minuta = getMinuta() - 60;
+                setGodzina(getGodzina() + 1);
             }
-            if(godzina>=24) godzina-=24;
+            if(getGodzina() >=24) setGodzina(getGodzina() - 24);
         }
     }
 
     //Metoda wypisująca czas w postaci zegara
     public void wypiszCzas(){
-        if(godzina>9 && minuta>9) { System.out.println("[" + godzina + ":" + minuta + "]"); }
-        else if(godzina>9 && minuta<=9) { System.out.println("[" + godzina + ":0" + minuta + "]"); }
-        else if(godzina<=9 && minuta>9) { System.out.println("[0" + godzina + ":" + minuta + "]"); }
-        else if(godzina<=9 && minuta<=9) { System.out.println("[0" + godzina + ":0" + minuta + "]"); }
+        if(getGodzina() >9 && getMinuta() >9) { System.out.println("[" + getGodzina() + ":" + getMinuta() + "]"); }
+        else if(getGodzina() >9 && getMinuta() <=9) { System.out.println("[" + getGodzina() + ":0" + getMinuta() + "]"); }
+        else if(getGodzina() <=9 && getMinuta() >9) { System.out.println("[0" + getGodzina() + ":" + getMinuta() + "]"); }
+        else if(getGodzina() <=9 && getMinuta() <=9) { System.out.println("[0" + getGodzina() + ":0" + getMinuta() + "]"); }
     }
 
     //Metoda powodująca opoźnienie wyświetlania kolejnych akcji w terminalu
@@ -39,4 +39,15 @@ public class Czas {
         }
     }
 
+    public int getMinuta() {
+        return minuta;
+    }
+
+    public int getGodzina() {
+        return godzina;
+    }
+
+    public void setGodzina(int godzina) {
+        this.godzina = godzina;
+    }
 }

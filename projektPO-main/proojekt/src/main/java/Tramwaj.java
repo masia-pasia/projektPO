@@ -1,108 +1,115 @@
 import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 
 public class Tramwaj implements LosoweLiczby, Pozycja {
-    public int stanTechTram;
-    private int pozx=0;
-    private int pozy=0;
-    private int pozxk=0;
-    private int pozyk=0;
-    public String poczatkowy;
-    public String koncowy;
+    private int stanTechTramwaju;
+    private int pozX = 0;
+    private int pozY = 0;
+    private int pozKoncowaX = 0;
+    private int pozKoncowaY = 0;
+    public String przystanekPoczatkowy;
+    public String przystanekKoncowy;
 
     //Konstruktor obiektu tramwaj
-    public Tramwaj(String poczatkowy, String koncowy){
-        random();
-        this.poczatkowy=poczatkowy;
-        this.koncowy=koncowy;
+    public Tramwaj (String przystanekPoczatkowy, String przystanekKoncowy){
+        losuj();
+        this.przystanekPoczatkowy = przystanekPoczatkowy;
+        this.przystanekKoncowy = przystanekKoncowy;
     }
 
     //Metoda implementujaca interfejs losowe liczby
     @Override
-    public int random(){
+    public int losuj(){
         int randoom = (int) (Math.random() * 26);
-        stanTechTram = randoom;
+        stanTechTramwaju = randoom;
         return randoom;
-    };
+    }
 
     //Metoda wyznaczajaca pozycje poczatkowa
     @Override
-    public void PoczatkowaPozycja(){
-        int a=0;
-        try {
-            BufferedReader brr = new BufferedReader(
-                    new FileReader("C:\\Users\\Dawid\\Desktop\\projektPO-main\\proojekt\\bazaprzystankow.txt"));
+    public void poczatkowaPozycja(){
+        int a = 0;
+        OdczytZPliku plik = new OdczytZPliku();
+        String nazwaPliku = "bazaprzystankow.txt";
+        InputStream zawartosc = plik.pobierzZPliku(nazwaPliku);
+        try (InputStreamReader odczyt = new InputStreamReader(zawartosc, StandardCharsets.UTF_8);
+             BufferedReader czytaj = new BufferedReader(odczyt)) {
 
-            String odczyt;
+            String line;
 
-            while((odczyt=brr.readLine())!=null){
+            while ((line =czytaj.readLine())!=null){
 
-                if(odczyt.equals(poczatkowy)){
+                if (line.equals(przystanekPoczatkowy)){
                     break;
                 }
                 else {
                     a++;
                 }
             }
-            brr.close();
         } catch (Exception noFile) {
             //return 0;
         }
-        while(a>4){
-            pozy++;
-            a-=5;
-            pozx=a;
+        while (a > 4){
+            pozY++;
+            a -= 5;
+            pozX = a;
         }
-        if(a<=4){pozx=a;};
+        pozX = a;
     }
 
     //Metoda wyznaczajaca pozycje koncowa
     @Override
-    public void KoncowaPozycja(){
-        int a=0;
-        try {
-            BufferedReader brr = new BufferedReader(
-                    new FileReader("C:\\Users\\Dawid\\Desktop\\projektPO-main\\proojekt\\bazaprzystankow.txt"));
+    public void koncowaPozycja(){
+        int a = 0;
+        OdczytZPliku mapa = new OdczytZPliku();
+        String nazwaPliku = "bazaprzystankow.txt";
+        InputStream zawartosc = mapa.pobierzZPliku(nazwaPliku);
+        try (InputStreamReader odczyt = new InputStreamReader(zawartosc, StandardCharsets.UTF_8);
+             BufferedReader czytaj = new BufferedReader(odczyt)) {
 
-            String odczyt;
+            String line;
 
-            while((odczyt=brr.readLine())!=null){
+            while ((line = czytaj.readLine())!=null){
 
-                if(odczyt.equals(koncowy)){
-                    //System.out.println("Dobrze byq " + a);
+                if (line.equals(przystanekKoncowy)){
                     break;
                 }
                 else {
                     a++;
                 }
             }
-            brr.close();
         } catch (Exception noFile) {
             //return 0;
         }
-        while(a>4){
-            pozyk++;
-            a-=5;
-            pozxk=a;
+        while (a > 4){
+            pozKoncowaY++;
+            a -= 5;
+            pozKoncowaX = a;
         }
-        if(a<=4){pozxk=a;};
+        pozKoncowaX = a;
     }
 
    //gettery
-    public int getPozx() {
-        return pozx;
-    };
+    public int getPozX() {
+        return pozX;
+    }
 
-    public int getPozy() {
-        return pozy;
-    };
+    public int getPozY() {
+        return pozY;
+    }
 
-    public int getPozxk() {
-        return pozxk;
-    };
+    public int getPozKoncowaX() {
+        return pozKoncowaX;
+    }
 
-    public int getPozyk() {
-        return pozyk;
-    };
+    public int getPozKoncowaY() {
+        return pozKoncowaY;
+    }
+
+    public int getStanTechTramwaju() {
+        return stanTechTramwaju;
+    }
 
 }

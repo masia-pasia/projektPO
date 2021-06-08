@@ -1,95 +1,97 @@
 import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Trasa implements LosoweLiczby {
-    public int px;
-    public int kx;
-    public int py;
-    public int ky;
+    public int pozPoczatkowaX;
+    public int pozKoncowaX;
+    public int pozPoczatkowaY;
+    public int pozKoncowaY;
     public String[][] mapa;
     public String[] droga;
     ArrayList<Przystanek> Przystanki = new ArrayList<>();
 
     //Konstruktor obiektu trasa
-    public Trasa(String[][] mapa, int px, int kx, int py, int ky){
-        this.px = px;
-        this.kx = kx;
-        this.py = py;
-        this.ky = ky;
+    public Trasa(String[][] mapa, int pozPoczatkowaX, int pozKoncowaX, int pozPoczatkowaY, int pozKoncowaY){
+        this.pozPoczatkowaX = pozPoczatkowaX;
+        this.pozKoncowaX = pozKoncowaX;
+        this.pozPoczatkowaY = pozPoczatkowaY;
+        this.pozKoncowaY = pozKoncowaY;
         this.mapa = mapa;
     }
 
-
     //Metoda budujaca mape pomocnicza
-    public void BudowanieMapy() {
-        try {
-            BufferedReader br = new BufferedReader(
-                    new FileReader("C:\\Users\\Dawid\\Desktop\\projektPO-main\\proojekt\\bazaprzystankow.txt"));
+    public void budowanieMapy() {
+        OdczytZPliku plik = new OdczytZPliku();
+        String nazwaPliku = "bazaprzystankow.txt";
+        InputStream zawartosc = plik.pobierzZPliku(nazwaPliku);
+        try (InputStreamReader odczyt = new InputStreamReader(zawartosc, StandardCharsets.UTF_8);
+             BufferedReader czytaj = new BufferedReader(odczyt)){
 
             for (int i = 0; i < 5; i++) {
                 for (int j = 0; j < 5; j++) {
-                    mapa[i][j] = br.readLine();
+                    mapa[i][j] = czytaj.readLine();
                 }
             }
-            br.close();
         } catch (Exception noFile) {
             //return 0;
         }
     }
 
     //Metoda wykonywana przy wyborze trasy przez uzytkownika, budujaca mozliwe trasy
-    public String[] WyborTrasy(String[][] mapa) {
-        int ilex = kx - px;
-        int iley = ky - py;
+    public String[] wyborTrasy(String[][] mapa) {
+        int ileNaOsiX = pozKoncowaX - pozPoczatkowaX;
+        int ileNaOsiY = pozKoncowaY - pozPoczatkowaY;
         int ilePrzystankow; //dlugosc trasy
-        if (ilex < 0) {
-            if (iley < 0) {
-                ilePrzystankow = -ilex - iley;
+        if (ileNaOsiX < 0) {
+            if (ileNaOsiY < 0) {
+                ilePrzystankow = -ileNaOsiX - ileNaOsiY;
             } else {
-                ilePrzystankow = -ilex + iley;
+                ilePrzystankow = -ileNaOsiX + ileNaOsiY;
             }
-        } else if (iley < 0) {
-            ilePrzystankow = ilex - iley;
+        } else if (ileNaOsiY < 0) {
+            ilePrzystankow = ileNaOsiX - ileNaOsiY;
         } else {
-            ilePrzystankow = ilex + iley;
+            ilePrzystankow = ileNaOsiX + ileNaOsiY;
         }
         String[] droga1 = new String[ilePrzystankow + 1]; //dwie mozliwe drogi
         String[] droga2 = new String[ilePrzystankow + 1];
 
-        if (ilex==0 && iley==0) {
-            System.out.println("Ale to smieszne, isc na tramwaj zeby nigdzie nie pojechac"); //wyjatek jesli poczatkowy=koncowy
+        if (ileNaOsiX ==0 && ileNaOsiY ==0) {
+            System.out.println("Ale to smieszne, isc na tramwaj zeby nigdzie nie pojechac"); //wyjatek jesli przystanekPoczatkowy=przystanekKoncowy
             String[] komedia = new String[1];
             komedia[0]="🤡  Krol komedii  🤡";
             System.out.println(komedia[0]);
             return komedia;
         } else {
             int poz;
-            droga1[0] = mapa[py][px];
-            droga2[0] = mapa[py][px];
+            droga1[0] = mapa[pozPoczatkowaY][pozPoczatkowaX];
+            droga2[0] = mapa[pozPoczatkowaY][pozPoczatkowaX];
 
-            if(ilex!=0) {//pierwsza trasa
+            if(ileNaOsiX !=0) {//pierwsza trasa
                 poz = 1;
-                if (ilex > 0) {
-                    for (int i = 1; i <= ilex; i++) {
-                        droga1[poz] = mapa[py][px + i];
+                if (ileNaOsiX > 0) {
+                    for (int i = 1; i <= ileNaOsiX; i++) {
+                        droga1[poz] = mapa[pozPoczatkowaY][pozPoczatkowaX + i];
                         poz++;
                     }
                 } else {
-                    for (int i = 1; i <= -ilex; i++) {
-                        droga1[poz] = mapa[py][px - i];
+                    for (int i = 1; i <= -ileNaOsiX; i++) {
+                        droga1[poz] = mapa[pozPoczatkowaY][pozPoczatkowaX - i];
                         poz++;
                     }
                 }
-                if (iley > 0) {
-                    for (int i = 1; i <= iley; i++) {
-                        droga1[poz] = mapa[py + i][kx];
+                if (ileNaOsiY > 0) {
+                    for (int i = 1; i <= ileNaOsiY; i++) {
+                        droga1[poz] = mapa[pozPoczatkowaY + i][pozKoncowaX];
                         poz++;
                     }
                 } else {
-                    for (int i = 1; i <= -iley; i++) {
-                        droga1[poz] = mapa[py - i][kx];
+                    for (int i = 1; i <= -ileNaOsiY; i++) {
+                        droga1[poz] = mapa[pozPoczatkowaY - i][pozKoncowaX];
                         poz++;
                     }
                 }
@@ -100,27 +102,27 @@ public class Trasa implements LosoweLiczby {
                 System.out.println(droga1[droga1.length - 1]);
             }
 
-            if(iley!=0) {//druga trasa
+            if(ileNaOsiY !=0) {//druga trasa
                 poz = 1;
-                if (iley > 0) {
-                    for (int i = 1; i <= iley; i++) {
-                        droga2[poz] = mapa[py + i][px];
+                if (ileNaOsiY > 0) {
+                    for (int i = 1; i <= ileNaOsiY; i++) {
+                        droga2[poz] = mapa[pozPoczatkowaY + i][pozPoczatkowaX];
                         poz++;
                     }
                 } else {
-                    for (int i = 1; i <= -iley; i++) {
-                        droga2[poz] = mapa[py - i][px];
+                    for (int i = 1; i <= -ileNaOsiY; i++) {
+                        droga2[poz] = mapa[pozPoczatkowaY - i][pozPoczatkowaX];
                         poz++;
                     }
                 }
-                if (ilex > 0) {
-                    for (int i = 1; i <= ilex; i++) {
-                        droga2[poz] = mapa[ky][px + i];
+                if (ileNaOsiX > 0) {
+                    for (int i = 1; i <= ileNaOsiX; i++) {
+                        droga2[poz] = mapa[pozKoncowaY][pozPoczatkowaX + i];
                         poz++;
                     }
                 } else {
-                    for (int i = 1; i <= -ilex; i++) {
-                        droga2[poz] = mapa[ky][px - i];
+                    for (int i = 1; i <= -ileNaOsiX; i++) {
+                        droga2[poz] = mapa[pozKoncowaY][pozPoczatkowaX - i];
                         poz++;
                     }
                 }
@@ -131,7 +133,7 @@ public class Trasa implements LosoweLiczby {
                 System.out.println(droga2[droga2.length - 1]);
             }
 
-            if(ilex!=0&&iley!=0){
+            if(ileNaOsiX !=0&& ileNaOsiY !=0){
                 String wybor;
                 do{
                 System.out.println("\nChcesz jechać trasą 1 czy 2?"); //wybor trasy
@@ -140,34 +142,29 @@ public class Trasa implements LosoweLiczby {
                 if (wybor.equals("1")) return droga1;
                 else if(wybor.equals("2")) return droga2;
                 else System.out.println("Prosze wybrac jedno z mozliwych rozwiazan");
-                }while(!wybor.equals("1") && !wybor.equals("2"));
+                }while(true);
             }
-            else if(iley==0) return droga1;
+            else if(ileNaOsiY ==0) return droga1;
             else return droga2;
         }
-        String[] komedia = new String[1];
-        komedia[0]="Krol komedii";
-        return komedia;
     }
 
     //Metoda implemetujaca interfejs losowe liczby
     @Override
-    public int random(){
-        int randoom = (int) (Math.random() * 26);
-        int StanTech = randoom;
-        return StanTech;
+    public int losuj(){
+        return (int) (Math.random() * 26);
     }
 
     //Metoda tworzaca przystanki na wybranej trasie
-    public void ZbudujPrzystanki(String[] droga){
+    public void zbudujPrzystanki(String[] droga){
         int a=0;
         int pozx, pozy;
-        int StanTech = random();
+        int StanTech = losuj();
         int dlugosc=droga.length;
         while(dlugosc!=0){
             for(int i=0; i<5; i++){
                 for(int j=0; j<5; j++){
-                    if(droga[a]==mapa[i][j]){
+                    if(droga[a].equals(mapa[i][j])){
                         pozx=i;
                         pozy=j;
                         Przystanki.add(new Przystanek(droga[a], pozx, pozy, StanTech));
@@ -180,5 +177,7 @@ public class Trasa implements LosoweLiczby {
     }
 
     //getter
-    public ArrayList<Przystanek> getPrzystanki() { return Przystanki; }
+    public ArrayList<Przystanek> getPrzystanki() {
+        return Przystanki;
+    }
 }

@@ -1,23 +1,30 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 public class RozkladMiasta {
     public String[][] plansza;
 
+    //Konstruktor rozkladu miasta
+    public RozkladMiasta(String[][] plansza) {
+        this.plansza = plansza;
+    }
+
     //Metoda budujaca obraz mapy miasta na podstawie przystankow z pliku bazaprzystankow.txt
-    public void BudowanieMapy() {
-        try {
-            BufferedReader br = new BufferedReader(
-                    new FileReader("C:\\Users\\Dawid\\Desktop\\projektPO-main\\proojekt\\bazaprzystankow.txt"));
+    public void budowanieMapy() {
+        OdczytZPliku plik = new OdczytZPliku();
+        String nazwaPliku = "bazaprzystankow.txt";
+        InputStream zawartosc = plik.pobierzZPliku(nazwaPliku);
+        try (InputStreamReader odczyt = new InputStreamReader(zawartosc, StandardCharsets.UTF_8);
+             BufferedReader czytaj = new BufferedReader(odczyt)) {
 
             for (int i = 0; i < 9; i += 2) {
                 for (int j = 0; j < 9; j += 2) {
-                    plansza[i][j] = br.readLine();
+                    plansza[i][j] = czytaj.readLine();
                 }
             }
-            br.close();
-        } catch (Exception noFile) {
-            //return 0;
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         for (int i = 1; i < 9; i += 2) {
             for (int j = 0; j < 9; j += 2) {
@@ -47,10 +54,5 @@ public class RozkladMiasta {
             }
             System.out.print("\n");
         }
-    }
-
-    //getter
-    public RozkladMiasta(String[][] plansza) {
-        this.plansza = plansza;
     }
 }

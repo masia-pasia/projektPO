@@ -1,46 +1,64 @@
 import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 
 public class Pogoda implements LosoweLiczby {
-    int numer;
-    int ryzyko;
-    String nazwa;
+    private int numerPogody;
+    private int ryzyko;
+    private String nazwaPogody;
 
     //Konstruktor obiektu pogoda
     Pogoda(){
-        random();
-        CzytanieZPliku();
+        losuj();
+        czytanieZPliku();
     }
 
     //Metoda implementujaca interfejs losowe liczby
     @Override
-    public int random(){
-        int randoom = (int) (Math.random() * 4);
-        numer = randoom;
-        return numer;
+    public int losuj(){
+        numerPogody = (int) (Math.random() * 4);
+        return getNumerPogody();
     }
 
     //Metoda odczytujaca dane z pliku bazapogod.txt
-    public void CzytanieZPliku(){
-        try {
-            BufferedReader brr = new BufferedReader(
-                    new FileReader("C:\\Users\\Dawid\\Desktop\\projektPO-main\\proojekt\\bazapogod.txt"));
+    public void czytanieZPliku(){
+        OdczytZPliku plik = new OdczytZPliku();
+        String nazwaPliku = "bazapogod.txt";
+        InputStream zawartosc = plik.pobierzZPliku(nazwaPliku);
+        try (InputStreamReader odczyt = new InputStreamReader(zawartosc, StandardCharsets.UTF_8);
+             BufferedReader czytaj = new BufferedReader(odczyt)) {
 
-            String odczyt;
-            String numerWStringu = String.valueOf(numer);
+            String line;
+            String numerWStringu = String.valueOf(getNumerPogody());
 
-            while((odczyt=brr.readLine())!=null){
+            while ((line = czytaj.readLine()) != null){
 
-                if(odczyt.equals(numerWStringu)){
-                    ryzyko = Integer.parseInt(brr.readLine());
-                    nazwa = brr.readLine();
-                    System.out.println("Pogoda na dzis: " + nazwa);
+                if (line.equals(numerWStringu)){
+                    ryzyko = Integer.parseInt(czytaj.readLine());
+                    nazwaPogody = czytaj.readLine();
+                    System.out.println("Pogoda na dzis: " + getNazwaPogody());
                     break;
                 }
+                else {
+                    line = czytaj.readLine();
+                    line = czytaj.readLine();
+                }
             }
-            brr.close();
-        } catch (Exception noFile) {
-            //return 0;
+        } catch (Exception ignored) {
         }
     }
+
+    public int getNumerPogody() {
+        return numerPogody;
+    }
+
+    public int getRyzyko() {
+        return ryzyko;
+    }
+
+    public String getNazwaPogody() {
+        return nazwaPogody;
+    }
+
 }

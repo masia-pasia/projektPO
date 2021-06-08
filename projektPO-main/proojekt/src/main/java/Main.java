@@ -9,9 +9,9 @@ public class Main {
         Motorniczy mietek = new Motorniczy();
         Pogoda dzisiejszaPogoda = new Pogoda();
         RozkladMiasta wroclaw = new RozkladMiasta(mapka);
-        wroclaw.BudowanieMapy();
+        wroclaw.budowanieMapy();
         Pasazer krzys = new Pasazer();
-        Czas aktualnaGodzina = new Czas(krzys.godzina.godzina,krzys.godzina.minuta);
+        Czas aktualnaGodzina = new Czas(krzys.godzinaOdjazdu.getGodzina(), krzys.godzinaOdjazdu.getMinuta());
         System.out.println("Rozpoczynasz jazde o: ");
         aktualnaGodzina.wypiszCzas();
         String aktualnyPrzystanek = null;
@@ -20,16 +20,16 @@ public class Main {
         while(true) {
             przesiadka:
             while (sztucznapetla == 1) {
-                Tramwaj dwojka = new Tramwaj(krzys.getPoczatkowy(), krzys.getKoncowy());
+                Tramwaj dwojka = new Tramwaj(krzys.getPrzystanekPoczatkowy(), krzys.getPrzystanekKoncowy());
                 if(kalkulatorPrzesiadek!=0){
-                    dwojka = new Tramwaj(aktualnyPrzystanek, krzys.getKoncowy());
+                    dwojka = new Tramwaj(aktualnyPrzystanek, krzys.getPrzystanekKoncowy());
                 }
-                dwojka.PoczatkowaPozycja();
-                dwojka.KoncowaPozycja();
-                Trasa trasaDwojka = new Trasa(mapa, dwojka.getPozx(), dwojka.getPozxk(), dwojka.getPozy(), dwojka.getPozyk());
-                trasaDwojka.BudowanieMapy();
-                trasaDwojka.droga = trasaDwojka.WyborTrasy(trasaDwojka.mapa);
-                trasaDwojka.ZbudujPrzystanki(trasaDwojka.droga);
+                dwojka.poczatkowaPozycja();
+                dwojka.koncowaPozycja();
+                Trasa trasaDwojka = new Trasa(mapa, dwojka.getPozX(), dwojka.getPozKoncowaX(), dwojka.getPozY(), dwojka.getPozKoncowaY());
+                trasaDwojka.budowanieMapy();
+                trasaDwojka.droga = trasaDwojka.wyborTrasy(trasaDwojka.mapa);
+                trasaDwojka.zbudujPrzystanki(trasaDwojka.droga);
                 ArrayList<Przystanek> NowePrzystanki = trasaDwojka.getPrzystanki();
                 KalkulatorOpoznien opoznienie = new KalkulatorOpoznien();
                 KalkulatorWykolejen wykolejenie = new KalkulatorWykolejen();
@@ -46,21 +46,21 @@ public class Main {
                             wybor = scan.nextLine();
                             if (wybor.equals("MPKWroclaw")||wybor.equals("mpkwroclaw")) {
                                 Czas ileNaprawa = new Czas(0,0);
-                                ileNaprawa = MPKWroclaw.wezwijMPK(NowePrzystanki.get(i).getPozx(),NowePrzystanki.get(i).getPozy());
-                                aktualnaGodzina.przeliczCzas(ileNaprawa.minuta, ileNaprawa.godzina);
-                                System.out.println("Aktualna godzina: ");
+                                ileNaprawa = MPKWroclaw.wezwijMPK(NowePrzystanki.get(i).getPozX(),NowePrzystanki.get(i).getPozY());
+                                aktualnaGodzina.przeliczCzas(ileNaprawa.getMinuta(), ileNaprawa.getGodzina());
+                                System.out.println("Aktualna godzinaOdjazdu: ");
                                 aktualnaGodzina.wypiszCzas();
                                 break;
                             } else if (wybor.equals("Autobus") || wybor.equals("autobus")) {
                                 Czas ileAutobus = new Czas(0,0);
-                                ileAutobus = MPKWroclaw.wezwijAutobus(NowePrzystanki.get(i).getPozx(),NowePrzystanki.get(i).getPozy());
-                                aktualnaGodzina.przeliczCzas(ileAutobus.minuta, ileAutobus.godzina);
-                                System.out.print("Aktualna godzina: ");
+                                ileAutobus = MPKWroclaw.wezwijAutobus(NowePrzystanki.get(i).getPozX(),NowePrzystanki.get(i).getPozY());
+                                aktualnaGodzina.przeliczCzas(ileAutobus.getMinuta(), ileAutobus.getGodzina());
+                                System.out.print("Aktualna godzinaOdjazdu: ");
                                 aktualnaGodzina.wypiszCzas();
                                 break na;
 
                             } else System.out.println("Prosze wybrac jedno z mozliwych rozwiazan");
-                        } while (!"MPKWroclaw".equals(wybor) && !"Autobus".equals(wybor) && !wybor.equals("mpkwroclaw") && wybor.equals("autobus"));
+                        } while (!wybor.equals("MPKWroclaw") && !wybor.equals("mpkwroclaw") && !wybor.equals("Autobus") && !wybor.equals("autobus"));
                     }
                     Czas.stoper(2000);
                     opoznienie.obliczSzanseOpoznienia(mietek, dzisiejszaPogoda);
@@ -72,7 +72,7 @@ public class Main {
                             Scanner scan = new Scanner(System.in);
                             wybor = scan.nextLine();
                             if (wybor.equals("tak") || wybor.equals("TAK") || wybor.equals("Tak")) {
-                                aktualnyPrzystanek = NowePrzystanki.get(i).getName();
+                                aktualnyPrzystanek = NowePrzystanki.get(i).getNazwaPrzystanku();
                                 kalkulatorPrzesiadek++;
                                 System.out.println("Nastapila przesiadka, kontynuujesz jazde");
                                 break przesiadka;
@@ -83,13 +83,13 @@ public class Main {
                     }
                     Czas.stoper(2000);
                     int czasPrzejazdu=0;
-                    czasPrzejazdu = NowePrzystanki.get(i).PoinformujOPrzystanku(czasPrzejazdu);
+                    czasPrzejazdu = NowePrzystanki.get(i).poinformujOPrzystanku();
                     aktualnaGodzina.przeliczCzas(czasPrzejazdu,0);
                     aktualnaGodzina.wypiszCzas();
                 }
                 sztucznapetla = 0;
                 System.out.println("Dojechales do przystanku koncowego!\nDziekujemy za wybranie lini MPK Wroclaw\nGratulacje!");
-                return;
+                System.exit(0);
             }
         }
     }

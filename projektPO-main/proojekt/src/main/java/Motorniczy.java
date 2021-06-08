@@ -1,45 +1,60 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 public class Motorniczy implements LosoweLiczby{
-    int numer;         //liczba porzadkowa przypisana motorniczemu
-    int wiek;          //wiek motorniczego podany w latach
-    int doswiadczenie; //doswiadczenie motorniczego podane w latach
+    private int numerMotorniczego;         //liczba porzadkowa przypisana motorniczemu
+    private int wiek;          //wiek motorniczego podany w latach
+    private int doswiadczenie; //doswiadczenie motorniczego podane w latach
 
     //Konstruktor klasy motorniczy
     Motorniczy(){
-        random();
-        CzytanieZPliku();
+        losuj();
+        czytanieZPliku();
     }
 
     //Metoda implementujaca liczby losowe
     @Override
-    public int random(){
-        int randoom = (int) (Math.random() * 4);
-        numer = randoom;
-        return numer;
+    public int losuj(){
+        numerMotorniczego = (int) (Math.random() * 4);
+        return getNumerMotorniczego();
     }
 
     //Metoda odczytujaca dane z pliku bazamotorniczych.txt
-    public void CzytanieZPliku(){
-        try {
-            BufferedReader brr = new BufferedReader(
-                    new FileReader("C:\\Users\\Dawid\\Desktop\\projektPO-main\\proojekt\\bazamotorniczych.txt"));
+    public void czytanieZPliku(){
+        OdczytZPliku motorniczy = new OdczytZPliku();
+        String nazwaPliku = "bazamotorniczych.txt";
+        InputStream zawartosc = motorniczy.pobierzZPliku(nazwaPliku);
+        String numerWStringu = String.valueOf(getNumerMotorniczego());
 
-            String odczyt;
-            String numerWStringu = String.valueOf(numer);
-
-            while((odczyt=brr.readLine())!=null){
-
-                if(odczyt.equals(numerWStringu)){
-                    wiek = Integer.parseInt(brr.readLine());
-                    doswiadczenie = Integer.parseInt(brr.readLine());
+        try (InputStreamReader odczyt = new InputStreamReader(zawartosc, StandardCharsets.UTF_8);
+             BufferedReader czytaj = new BufferedReader(odczyt)) {
+            String line;
+            while ((line = czytaj.readLine()) != null) {
+                if (line.equals(numerWStringu)) {
+                    wiek = Integer.parseInt(czytaj.readLine());
+                    doswiadczenie = Integer.parseInt(czytaj.readLine());
                     break;
                 }
+                else{
+                    line = czytaj.readLine();
+                    line = czytaj.readLine();
+                }
             }
-            brr.close();
-        } catch (Exception noFile) {
-            //return 0;
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+    }
+
+    public int getNumerMotorniczego() {
+        return numerMotorniczego;
+    }
+
+    public int getWiek() {
+        return wiek;
+    }
+
+    public int getDoswiadczenie() {
+        return doswiadczenie;
     }
 }
