@@ -1,36 +1,36 @@
-RegulyOpoznien.java
- RegulyOpoznien
-OdczytZPliku.java
- OdczytZPliku
-RegulyWykolejen.java
- RegulyWykolejen
-Pozycja.java
- Pozycja
-Czas.java
- Czas
-Przystanek.java
- Przystanek
-Pasazer.java
- Pasazer
-RozkladMiasta.java
- RozkladMiasta
-LosoweLiczby.java
- LosoweLiczby
 KalkulatorOpoznien.java
  KalkulatorOpoznien
-KalkulatorCzasuDojazdu.java
- KalkulatorCzasuDojazdu
-Motorniczy.java
- Motorniczy
-MPKWroclaw.java
- MPKWroclaw
-Pogoda.java
- Pogoda
-Main.java
- Main
+OdczytZPliku.java
+ OdczytZPliku
 Tramwaj.java
  Tramwaj
 KalkulatorWykolejen.java
  KalkulatorWykolejen
+Pogoda.java
+ Pogoda
+Czas.java
+ Czas
 Trasa.java
  Trasa
+Przystanek.java
+ Przystanek
+LosoweLiczby.java
+ LosoweLiczby
+RozkladMiasta.java
+ RozkladMiasta
+RegulyOpoznien.java
+ RegulyOpoznien
+RegulyWykolejen.java
+ RegulyWykolejen
+Pasazer.java
+ Pasazer
+KalkulatorCzasuDojazdu.java
+ KalkulatorCzasuDojazdu
+MPKWroclaw.java
+ MPKWroclaw
+Motorniczy.java
+ Motorniczy
+Pozycja.java
+ Pozycja
+Main.java
+ Main
