@@ -90,7 +90,6 @@ public class Main {
                 sztucznapetla = 0;
                 System.out.println("Dojechales do przystanku koncowego!\nDziekujemy za wybranie lini MPK Wroclaw\nGratulacje!");
                 System.exit(0);
-                System.exit(0);
             }
         }
     }
