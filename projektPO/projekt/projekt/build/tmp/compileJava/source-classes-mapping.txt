@@ -1,0 +1,38 @@
+Utrudnienia/RegulyOpoznien.java
+ Utrudnienia.RegulyOpoznien
+ElementyMiasta/RozkladMiasta.java
+ ElementyMiasta.RozkladMiasta
+ElementyMiasta/Koordynaty.java
+ ElementyMiasta.Koordynaty
+ElementySymulacji/Motorniczy.java
+ ElementySymulacji.Motorniczy
+ObslugaSymulacji/Czas.java
+ ObslugaSymulacji.Czas
+ObslugaSymulacji/Pasazer.java
+ ObslugaSymulacji.Pasazer
+ObslugaSymulacji/Komunikacja.java
+ ObslugaSymulacji.Komunikacja
+Utrudnienia/RegulyWykolejen.java
+ Utrudnienia.RegulyWykolejen
+ElementySymulacji/Tramwaj.java
+ ElementySymulacji.Tramwaj
+ObslugaSymulacji/OdczytZPliku.java
+ ObslugaSymulacji.OdczytZPliku
+ObslugaSymulacji/KalkulatorCzasuDojazdu.java
+ ObslugaSymulacji.KalkulatorCzasuDojazdu
+ElementyMiasta/Trasa.java
+ ElementyMiasta.Trasa
+ElementyMiasta/Przystanek.java
+ ElementyMiasta.Przystanek
+ObslugaSymulacji/TypyPomocy.java
+ ObslugaSymulacji.TypyPomocy
+ElementySymulacji/MPKWroclaw.java
+ ElementySymulacji.MPKWroclaw
+Utrudnienia/KalkulatorWykolejen.java
+ Utrudnienia.KalkulatorWykolejen
+Utrudnienia/KalkulatorOpoznien.java
+ Utrudnienia.KalkulatorOpoznien
+ElementySymulacji/Pogoda.java
+ ElementySymulacji.Pogoda
+ObslugaSymulacji/Main.java
+ ObslugaSymulacji.Main
