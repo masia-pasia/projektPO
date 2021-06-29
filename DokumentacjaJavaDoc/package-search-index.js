@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"symulacja"},{"l":"symulacja.miasta"},{"l":"symulacja.obliczenia"},{"l":"symulacja.parametry"},{"l":"symulacja.pomoc"},{"l":"symulacja.przejazd"},{"l":"symulacja.utrudnienia"}];updateSearchResults();
