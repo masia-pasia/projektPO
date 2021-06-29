@@ -1,0 +1,54 @@
+symulacja/utrudnienia/Regula.java
+ symulacja.utrudnienia.Regula
+symulacja/pomoc/TypyPomocy.java
+ symulacja.pomoc.TypyPomocy
+symulacja/obliczenia/KalkulatorCzasuDojazdu.java
+ symulacja.obliczenia.KalkulatorCzasuDojazdu
+symulacja/pomoc/Pomoc.java
+ symulacja.pomoc.Pomoc
+symulacja/przejazd/Pasazer.java
+ symulacja.przejazd.Pasazer
+symulacja/utrudnienia/RegulyWykolejen.java
+ symulacja.utrudnienia.RegulyWykolejen
+symulacja/parametry/TramwajTest.java
+ symulacja.parametry.TramwajTest
+symulacja/parametry/Pogoda.java
+ symulacja.parametry.Pogoda
+symulacja/przejazd/Wybor.java
+ symulacja.przejazd.Wybor
+symulacja/Main.java
+ symulacja.Main
+symulacja/pomoc/MPKWroclaw.java
+ symulacja.pomoc.MPKWroclaw
+symulacja/pomoc/Autobus.java
+ symulacja.pomoc.Autobus
+symulacja/OdczytZPliku.java
+ symulacja.OdczytZPliku
+symulacja/utrudnienia/RegulyOpoznien.java
+ symulacja.utrudnienia.RegulyOpoznien
+symulacja/parametry/Motorniczy.java
+ symulacja.parametry.Motorniczy
+symulacja/miasta/RozkladMiasta.java
+ symulacja.miasta.RozkladMiasta
+symulacja/obliczenia/KalkulatorWykolejen.java
+ symulacja.obliczenia.KalkulatorWykolejen
+symulacja/miasta/Mapa.java
+ symulacja.miasta.Mapa
+symulacja/miasta/Przystanek.java
+ symulacja.miasta.Przystanek
+symulacja/miasta/Koordynaty.java
+ symulacja.miasta.Koordynaty
+symulacja/przejazd/Komunikacja.java
+ symulacja.przejazd.Komunikacja
+symulacja/parametry/Tramwaj.java
+ symulacja.parametry.Tramwaj
+symulacja/obliczenia/KalkulatorOpoznien.java
+ symulacja.obliczenia.KalkulatorOpoznien
+symulacja/pomoc/WezwijPomoc.java
+ symulacja.pomoc.WezwijPomoc
+symulacja/miasta/Trasa.java
+ symulacja.miasta.Trasa
+symulacja/przejazd/Przejazd.java
+ symulacja.przejazd.Przejazd
+symulacja/parametry/Parametry.java
+ symulacja.parametry.Parametry
